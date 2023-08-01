@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Audio Recorder</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Audio Recorder</h1>
+        <button id="recordButton">Start Recording</button> 
+        <input type="file" id="audioFileInput">
+        <p id="status">Status: Idle</p>
+        <audio controls id="audioPlayer" style="display:none;"></audio>
+        <p id="errorMessage" style="display:none; color: rgb(0, 0, 0);">No access to the microphone. You can only use the upload functionality.</p>
+        <button id="getGenButton" style="display:none;">Get Gen</button>
+        <p id="generatedText"></p> 
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.0/dist/ffmpeg.min.js" integrity="sha384-MruWXCyXj4W9IhGkVz8zq4ZfA9h+im+OfP8KbjUjKwhxXsFf5dY9AxpCCah5qIBi" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
