@@ -47,7 +47,7 @@ def generate():
 
     input_mfcc = process_input(audio, length)
     #return jsonify(input_mfcc)
-    return jsonify({'text': 'Hello World!'})
+    return jsonify(input_mfcc.tolist())
 
 if __name__ == '__main__':
     app.run(debug=True)

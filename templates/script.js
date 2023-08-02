@@ -126,7 +126,7 @@ const sendToApp = (mp3Blob) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            var genre = predict(data.text);
+            var genre = predict(data['features']);
             generatedTextElement.textContent = genre; 
         })
         .catch((error) => {
