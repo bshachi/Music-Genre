@@ -126,12 +126,35 @@ const sendToApp = (mp3Blob) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            generatedTextElement.textContent = data.text; // Display the generated text on the webpage
+            var genre = predict(data.text);
+            generatedTextElement.textContent = genre; 
         })
         .catch((error) => {
             console.error('Error fetching generated text:', error);
         });
 };
+
+tf.loadLayersModel('model / model.json')
+    .then(function (model) {
+        window.model = model;
+    });
+  
+// Predict function
+var predict = function (input) {
+    var mapping = ['Reggae', 'Disco', 'Jazz', 'Classical', 'Rock', 'Classical', 'Hiphop', 'Blues', 'Pop', 'Country', 'Metal'];
+    if (window.model) {
+        window.model.predict([tf.tensor(input)])
+            .array().then(function (scores) {
+                scores = scores[0];
+                var predicted = mapping[scores.indexOf(Math.max(...scores))];
+                return predicted;
+            });
+    } else {
+
+        setTimeout(function () { predict(input) }, 50);
+    }
+};
+
 
 // Function to fetch file from Blob object
 const fetchFile = async (blob) => {
